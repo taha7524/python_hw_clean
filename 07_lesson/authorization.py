@@ -9,8 +9,8 @@ class Authorization:
 
     def authorization(self, username, password):
         self._driver.find_element(By.CSS_SELECTOR, 'input[id="user-name"]').\
-            send_keys("standard_user")
+            send_keys("username")
         self._driver.find_element(By.CSS_SELECTOR, 'input[id="password"]').\
-            send_keys("secret_sauce")
+            send_keys("password")
         self._driver.find_element(By.CSS_SELECTOR,
                                   'input[id="login-button"]').click()
