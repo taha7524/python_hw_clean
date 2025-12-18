@@ -1,7 +1,7 @@
 from project_YouGile import ProjectYouGile
 
 name = "TestCompany"
-users = {"090a01bf-4dc9-464e-90e1-f280eb78571c": "admin"}
+users = {"Укажите id пользователя": "admin"}
 
 
 api = ProjectYouGile('https://ru.yougile.com/api-v2/')
