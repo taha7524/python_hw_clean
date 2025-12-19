@@ -1,11 +1,12 @@
 from project_YouGile import ProjectYouGile
 
 name = "TestCompany"
-users = {"Укажите id пользователя": "admin"}
+users = {"090a01bf-4dc9-464e-90e1-f280eb78571c": "admin"}
 
 
 api = ProjectYouGile('https://ru.yougile.com/api-v2/')
 
+# Позитивные тесты:
 
 def test_create_project():
     # количество проектов до
@@ -54,3 +55,41 @@ def test_edit_project():
 
     # удаляем созданный проект
     api.edit_project(project_id, True, 'Del_Project_Test')
+
+
+# Негативные тесты:
+def test_create_project_negative():
+    # количество проектов до
+    projects_before = api.get_project_list()
+    len_before = len(projects_before)
+
+    # создание проекта
+    result = api.create_project('', users)
+
+    # количество проектов после
+    projects_after = api.get_project_list()
+    len_after = len(projects_after)
+
+    assert len_after - len_before == 0
+
+    assert result["message"][0] == "title should not be empty"
+
+    
+
+def test_get_project_with_id_negative():
+    
+    # обращаемся к проекту
+    new_project = api.get_project_with_id("несуществующий проект")
+
+    assert new_project['message'] == "Проект не найден"
+    assert new_project['statusCode'] == 404
+
+
+
+def test_edit_project_negative():
+
+    result = api.edit_project("несуществующий проект", 
+                              False, 'Edited_Project_Test')
+
+    assert result['message'] == "Проект не найден"
+    assert result['statusCode'] == 404
