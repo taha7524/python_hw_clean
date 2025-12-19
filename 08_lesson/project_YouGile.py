@@ -9,9 +9,9 @@ class ProjectYouGile:
     # Получить ключ авторизации
     def get_token(self):
         payload = {
-            "login": "nenataha.75@gmail.com",
-            "password": "Ucheba2024&",
-            "companyId": "ae49d152-4d9e-4788-aa80-50b11be058e5"
+             "login": "УКАЖИТЕ ВАШУ ПОЧТУ",
+            "password": "УКАЖИТЕ ВАШ ПАРОЛЬ",
+            "companyId": "УКАЖИТЕ ВАШ ID"
         }
         resp = requests.post(self.url + 'auth/keys/get', json=payload)
         return resp.json()[0]['key']
